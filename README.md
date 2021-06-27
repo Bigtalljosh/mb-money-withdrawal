@@ -45,3 +45,7 @@ Things to note with this though - EF won't like the auto properties in the entit
 Secondly, now I've refactored the code I can clean up the existing TransferMoney feature which makes it really slim, clean and easy to read and understand.
 
 Thirdly, I can now easily implement the WithdrawMoney feature by simply calling the Withdraw function I wrote during the refactor and making sure to call update for the repository to save the change (were the repository implemented anyway).
+
+Lastly, I'm writing a handful of tests to test the logic in the Account entity to prove the changes I've made have the intended effects.
+
+I would continue to cover the features in tests but I'm slightly over the hour limit now and it feels a bit like cheating to carry on!
