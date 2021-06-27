@@ -43,3 +43,5 @@ I've noticed that moving the validation and account logic into the Account entit
 Things to note with this though - EF won't like the auto properties in the entity now because there's no setter, will need some additional configuration to make this work.
 
 Secondly, now I've refactored the code I can clean up the existing TransferMoney feature which makes it really slim, clean and easy to read and understand.
+
+Thirdly, I can now easily implement the WithdrawMoney feature by simply calling the Withdraw function I wrote during the refactor and making sure to call update for the repository to save the change (were the repository implemented anyway).

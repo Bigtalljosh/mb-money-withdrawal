@@ -1,23 +1,23 @@
 ﻿using Moneybox.App.DataAccess;
-using Moneybox.App.Domain.Services;
 using System;
 
 namespace Moneybox.App.Features
 {
     public class WithdrawMoney
     {
-        private IAccountRepository accountRepository;
-        private INotificationService notificationService;
+        private readonly IAccountRepository _accountRepository;
 
-        public WithdrawMoney(IAccountRepository accountRepository, INotificationService notificationService)
+        public WithdrawMoney(IAccountRepository accountRepository)
         {
-            this.accountRepository = accountRepository;
-            this.notificationService = notificationService;
+            _accountRepository = accountRepository;
         }
 
         public void Execute(Guid fromAccountId, decimal amount)
         {
-            // TODO:
+            var account = _accountRepository.GetAccountById(fromAccountId);
+
+            account.Withdraw(amount);
+            _accountRepository.Update(account);
         }
     }
 }
