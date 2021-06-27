@@ -49,3 +49,25 @@ Thirdly, I can now easily implement the WithdrawMoney feature by simply calling 
 Lastly, I'm writing a handful of tests to test the logic in the Account entity to prove the changes I've made have the intended effects.
 
 I would continue to cover the features in tests but I'm slightly over the hour limit now and it feels a bit like cheating to carry on!
+
+---
+
+## Post-Submission thoughts
+
+### Remove dependency in Account entity
+
+I've been thinking how I could remove the dependency on `INotificationService` in the `Account` entity. I have an idea but it's a tradeof, a bit of code duplication but removes a dependency.
+It works by returning a response from the methods in the Entity such as:
+
+```csharp
+public abstract record WithdrawResponse;
+public record SuccessWithdrawResponse : WithdrawResponse;
+public record SuccessLowFundsWithdrawResponse : WithdrawResponse;
+public record FailInsufficientFundsWithdrawResponse : WithdrawResponse;
+```
+
+And then in the `Feature.Execute` we could do some pattern matching on the response and for example a `SuccessLowFundsWithdrawResponse` we could then send the notification to the customer about a low balance.
+
+### Potential failure between saves and inconsistent state
+
+Another concern I had earlier and should've documented is the fact none of this is in a transaction, so we could end up with a problem where we send a notification for low funds, but then fail on one of the `AccountRepository.Update` calls, or wore still the first `Update` is successful but the second isn't. In these cases we would end up in an inconsistent state where we took money from account A, but did not credit it in account B.
