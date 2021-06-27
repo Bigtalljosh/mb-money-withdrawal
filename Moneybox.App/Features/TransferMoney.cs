@@ -17,6 +17,7 @@ namespace Moneybox.App.Features
 
         public void Execute(Guid fromAccountId, Guid toAccountId, decimal amount)
         {
+            /*
             var from = this.accountRepository.GetAccountById(fromAccountId);
             var to = this.accountRepository.GetAccountById(toAccountId);
 
@@ -50,6 +51,7 @@ namespace Moneybox.App.Features
 
             this.accountRepository.Update(from);
             this.accountRepository.Update(to);
+            */
         }
     }
 }

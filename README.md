@@ -34,3 +34,8 @@ So what I've understood from this spec, I need to:
 * Refactor the code in TransferMoney and move the generic logic around balance alerts and invalid operations into the domain models themselves
 * Write code for a WithdrawMoney method
 * It sounds like tests are a nice to have if there's time left. Given the 1 hour time constraint I'm not planning to tackle this TDD, however I will add some Unit Testing.
+
+## Process
+
+First up I'm going to handle the refactor before implementing the new code. It might seem a little backwards but in this case I think it makes sense.
+I've noticed that moving the validation and account logic into the Account entity means they're not going to be "pure" functions, what I mean by this is that there *could* be side effects to what gets done here. For example if the balance is below 500 then we're going to send a notification, this is a side effect. So I'm going to extract the setters into methods and have a publically accessible getter. I think this providers a cleaner developer experience, it should be obvious that the Balance property is read only, but there are functions exposed to PayIn and Withdraw in order to update the balance.
