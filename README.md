@@ -8,7 +8,7 @@ The solution contains a .NET core library (Moneybox.App) which is structured int
 
 ## The task
 
-The task is to implement a money withdrawal in the WithdrawMoney.Execute(...) method in the features folder. For consistency, the logic should be the same as the TransferMoney.Execute(...) method i.e. notifications for low funds and exceptions where the operation is not possible. 
+The task is to implement a money withdrawal in the WithdrawMoney.Execute(...) method in the features folder. For consistency, the logic should be the same as the TransferMoney.Execute(...) method i.e. notifications for low funds and exceptions where the operation is not possible.
 
 As part of this process however, you should look to refactor some of the code in the TransferMoney.Execute(...) method into the domain models, and make these models less susceptible to misuse. We're looking to make our domain models rich in behaviour and much more than just plain old objects, however we don't want any data persistance operations (i.e. data access repositories) to bleed into our domain. This should simplify the task of implementing WithdrawMoney.Execute(...).
 
@@ -24,3 +24,13 @@ As part of this process however, you should look to refactor some of the code in
 Once you have completed test, zip up your solution, excluding any build artifacts to reduce the size, and email it back to our recruitment team.
 
 Good luck!
+
+---
+
+## Personal Notes
+
+So what I've understood from this spec, I need to:
+
+* Refactor the code in TransferMoney and move the generic logic around balance alerts and invalid operations into the domain models themselves
+* Write code for a WithdrawMoney method
+* It sounds like tests are a nice to have if there's time left. Given the 1 hour time constraint I'm not planning to tackle this TDD, however I will add some Unit Testing.
